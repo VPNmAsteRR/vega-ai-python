@@ -1,0 +1,23 @@
+[Unit]
+Description=Telegram bot powered by GigaChat
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=gigachat-bot
+WorkingDirectory=/opt/gigachat-bot
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/gigachat-bot/.venv/bin/python /opt/gigachat-bot/main.py
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGINT
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/gigachat-bot
+
+[Install]
+WantedBy=multi-user.target
